@@ -155,8 +155,8 @@ module.exports = function(logger){
                 }
             };
 
-            handlers.share = function(isValidShare, isValidBlock, data){
-                shareProcessor.handleShare(isValidShare, isValidBlock, data);
+            handlers.share = function(isValidShare, isValidBlock, data, blockHex){
+                shareProcessor.handleShare(isValidShare, isValidBlock, data, blockHex);
             };
         }
 
@@ -196,7 +196,7 @@ module.exports = function(logger){
             } else if (!isValidShare)
                 logger.debug(logSystem, logComponent, logSubCat, 'Share rejected: ' + shareData);
 
-            handlers.share(isValidShare, isValidBlock, data)
+            handlers.share(isValidShare, isValidBlock, data, blockHex)
 
 
         }).on('difficultyUpdate', function(workerName, diff){

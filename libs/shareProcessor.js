@@ -66,7 +66,7 @@ module.exports = function(logger, poolConfig){
     });
 
 
-    this.handleShare = function(isValidShare, isValidBlock, shareData){
+    this.handleShare = function(isValidShare, isValidBlock, shareData, blockHex){
 
         var redisCommands = [];
 
