@@ -1,7 +1,8 @@
 <style>
     .boxLowerHeader{
-        font-size: 1.3em;
+        font-size: 1.7em;
         margin: 0 0 5px 10px;
+        align-content: center;
     }
 
     #boxStatsRight{
@@ -32,6 +33,12 @@
     .boxStatsList > div > div{
         padding: 3px;
     }
+    .shareInfo{
+        margin-bottom: 10px; 
+        background-color: #dfedee; 
+        min-width:600px; 
+        border:2px solid gold;
+    }
 </style>
 
 <div class="shareBox">
@@ -47,86 +54,38 @@
             {{ for(var num=0 ; num < worker.header.length ; num++) { }}
             <div class="boxStatsList">
                 <div style="margin-bottom: 9px; background-color: #eeeeee; min-width:600px;">
-                    <i class="fa fa-bars"></i>Worker : </a>{{=worker}}
+                    <i class="fa fa-bars"></i><small style="font-size: 1.3em;">Worker : </small></a>{{=worker}}
                     <span style="padding-left: 30px;"><small>TimeStamp : </small>header[num]["timestamp"]</span>
-                    <div style="margin-bottom: 10px; background-color: #c8e5e7; min-width:600px;">
-                        <div><h3>Version:</h3>header[num]["version"]</a></div>
-                        <div><h3>Previous Block Hash:</h3>header[num]["previousblockhash"]</a></div>
-                        <div><h3>Merkle Root:</h3>header[num]["merkleroot"]</a></div>
-                        <div><h3>Bits:</h3>header[num]["bits"]</a></div>
-                        <div><h3>Nonce:</h3>header[num]["nonce"]</a></div>
+                    <div class="shareInfo">
+                        <div style="padding: 7px"><h3>Version:</h3>header[num]["version"]</a></div>
+                        <div style="padding: 7px"></div><h3>Previous Block Hash:</h3>header[num]["previousblockhash"]</a></div>
+                        <div style="padding: 7px"><h3>Merkle Root:</h3>header[num]["merkleroot"]</a></div>
+                        <div style="padding: 7px"><h3>Bits:</h3>header[num]["bits"]</a></div>
+                        <div style="padding: 7px"><h3>Nonce:</h3>header[num]["nonce"]</a></div>
                     </div>
                 </div>
             </div>
             {{ } }}
         {{ } }}
         {{ } }}
+        {{ for(var num=0 ; num < 7 ; num++) { }}
         <div class="boxStatsList">
                 {{var test = [{"1":2, 2:3},{3:4,5:6}];}}
             <div style="margin-bottom: 9px; background-color: #eeeeee; min-width:600px;">
-                <i class="fa fa-bars"></i>Worker : </a>{{=test[0]}}
+                <span><i class="fa fa-bars"></i><small style="font-size: 1.3em;">Worker : </small></a>{{=test[0]}}</span>
                 <span style="padding-left: 30px;"><small>TimeStamp : </small>{{=test[0]["1"]}}</span>
-                <div style="margin-bottom: 10px; background-color: #c8e5e7; min-width:600px;">
-                    <div><h3>Version:</h3>{{=test[0][2]}}</a></div>
-                    <div><h3>Previous Block Hash:</h3>b6ff0b1b1680a2862a30ca44d346d9e8910d334beb48ca0c0000000000000000</a></div>
-                    <div><h3>Merkle Root:</h3>9d10aa52ee949386ca9385695f04ede270dda20810decd12bc9b048aaab31471</a></div>
-                    <div><h3>Bits:</h3>30c31b18</a></div>
-                    <div><h3>Nonce:</h3>fe9f0864</a></div>
+                <div class="shareInfo">
+                    <div style="padding: 7px"><h3>Version</h3>{{=test[0][2]}}</a></div>
+                    <div style="padding: 7px"><h3>Previous Block Hash</h3>b6ff0b1b1680a2862a30ca44d346d9e8910d334beb48ca0c0000000000000000</a></div>
+                    <div style="padding: 7px"><h3>Merkle Root</h3>9d10aa52ee949386ca9385695f04ede270dda20810decd12bc9b048aaab31471</a></div>
+                    <div style="padding: 7px"><h3>Bits</h3>30c31b18</a></div>
+                    <div style="padding: 7px"><h3>Nonce</h3>fe9f0864</a></div>
                 </div>
             </div>
         </div>
-        <button onclick="myFunction()">Try it</button>
+        {{ } }}
 
         <script type="text/javascript">
-            function myFunction() {
-            var boxStatsList = document.createElement("div");
-            boxStatsList.className = 'boxStatsList';
-
-            var inner_div = document.createElement("div");
-            inner_div.style.backgroundColor = '#eeeeee';
-            inner_div.style.minWidth = '600px';
-            inner_div.style.marginBottom = '9px';
-
-            var i = document.createElement("i");
-            i.className = 'fa fa-bars';
-
-            var small = document.createElement("small");
-            small.innerHTML = "tessst";
-
-            var span1 = document.createElement("span");
-            span1.style.paddingLeft = '18px';
-            var small1 = document.createElement("small");
-            small1.innerHTML = "Sat Nov 16 2019 12:36:36 GMT+0800";
-            span1.appendChild(small1);
-
-            var span2 = document.createElement("span");
-            span2.style.color = 'red';
-            span2.style.cssFloat = 'right';
-            var small2 = document.createElement("small");
-            small2.innerHTML = "11 of 100";
-            span2.appendChild(small2);
-
-            var div2 = document.createElement("div");
-            var i_div2 = document.createElement("i");
-            i_div2.className = "fa fa-gavel";
-            div2.appendChild(i_div2);
-            var small_div2 = document.createElement("small");
-            small_div2.innerHTML = "Mined By: ";
-            div2.appendChild(small_div2);
-            var a_div2 = document.createElement("a");
-            a_div2.setAttribute('href', '/getting_started');
-            a_div2.innerHTML = "CR5NNL8yCr28VyuVxXsnEsY2inYRjSW5tH.l3";
-            div2.appendChild(a_div2);
-
-            inner_div.appendChild(i);
-            inner_div.appendChild(small);
-            inner_div.appendChild(span1);
-            inner_div.appendChild(span2);
-            inner_div.appendChild(div2);
-            boxStatsList.appendChild(inner_div);
-            document.getElementById("boxStatsRight").appendChild(boxStatsList);
-            
-            }
         </script>
   </div>
     </div>
