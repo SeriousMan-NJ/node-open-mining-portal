@@ -190,7 +190,7 @@ module.exports = function(logger, portalConfig, poolConfigs){
                         coinStats.shares += workerShares;
                         if (worker in coinStats.workers) {
                             coinStats.workers[worker].shares += workerShares;
-                            coinStats.workers[worker].header.push(header);
+                            coinStats.workers[worker].headers.push(header);
                         }
                         else
                             coinStats.workers[worker] = {
@@ -203,7 +203,7 @@ module.exports = function(logger, portalConfig, poolConfigs){
                     else {
                         if (worker in coinStats.workers) {
                             coinStats.workers[worker].invalidshares -= workerShares; // workerShares is negative number!
-                            coinStats.workers[worker].header.push(header);
+                            coinStats.workers[worker].headers.push(header);
                         }
                         else
                             coinStats.workers[worker] = {
