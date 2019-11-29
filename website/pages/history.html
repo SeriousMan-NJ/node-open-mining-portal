@@ -18,7 +18,7 @@
         justify-content: space-around;
         opacity: 0.77;
         margin-bottom: 5px;
-        margin-top: 9px;
+        margin-top: 3px;
         flex: 1 1 auto;
         align-content: center;
     }
@@ -37,7 +37,7 @@
         margin-bottom: 10px; 
         background-color: #dfedee; 
         min-width:600px; 
-        border:2px solid gold;
+        border:2px solid #6b6a6a;
     }
 </style>
 
@@ -51,35 +51,36 @@
         {{ for(var pool in it.stats.pools) { }}
             {{ for(var worker in it.stats.pools[pool].workers) { }}
             {{var workerstat = it.stats.pools[pool].workers[worker];}}
-            {{ for(var num=0 ; num < worker.header.length ; num++) { }}
+            {{ for(var num=0 ; num < worker.headers.length ; num++) { }}
             <div class="boxStatsList">
-                <div style="margin-bottom: 9px; background-color: #eeeeee; min-width:600px;">
+                <div style="margin-bottom: 12px; background-color: #eeeeee; min-width:600px;">
                     <i class="fa fa-bars"></i><small style="font-size: 1.3em;">Worker : </small></a>{{=worker}}
-                    <span style="padding-left: 30px;"><small>TimeStamp : </small>header[num]["timestamp"]</span>
+                    <span style="padding-left: 30px;"><small>TimeStamp : </small>headers[num]["ntime"]</span>
                     <div class="shareInfo">
-                        <div style="padding: 7px"><h3>Version:</h3>header[num]["version"]</a></div>
-                        <div style="padding: 7px"></div><h3>Previous Block Hash:</h3>header[num]["previousblockhash"]</a></div>
-                        <div style="padding: 7px"><h3>Merkle Root:</h3>header[num]["merkleroot"]</a></div>
-                        <div style="padding: 7px"><h3>Bits:</h3>header[num]["bits"]</a></div>
-                        <div style="padding: 7px"><h3>Nonce:</h3>header[num]["nonce"]</a></div>
+                        <div style="padding: 7px"><h3>Version:</h3>headers[num]["version"]</a></div>
+                        <div style="padding: 7px"></div><h3>Previous Block Hash:</h3>headers[num]["previousblockhash"]</a></div>
+                        <div style="padding: 7px"><h3>Merkle Root:</h3>headers[num]["merkleRoot"]</a></div>
+                        <div style="padding: 7px"><h3>Bits:</h3>headers[num]["bits"]</a></div>
+                        <div style="padding: 7px"><h3>Nonce:</h3>headers[num]["nonce"]</a></div>
                     </div>
                 </div>
             </div>
             {{ } }}
         {{ } }}
         {{ } }}
-        {{ for(var num=0 ; num < 7 ; num++) { }}
+
+        {{ for(var num=0 ; num < 1 ; num++) { }}
         <div class="boxStatsList">
                 {{var test = [{"1":2, 2:3},{3:4,5:6}];}}
-            <div style="margin-bottom: 9px; background-color: #eeeeee; min-width:600px;">
+            <div style="margin-bottom: 12px; background-color: #eeeeee; min-width:600px;">
                 <span><i class="fa fa-bars"></i><small style="font-size: 1.3em;">Worker : </small></a>{{=test[0]}}</span>
-                <span style="padding-left: 30px;"><small>TimeStamp : </small>{{=test[0]["1"]}}</span>
+                <span style="padding-left: 50px;"><small style="font-size: 1.3em;">TimeStamp : </small>{{=test[0]["1"]}}</span>
                 <div class="shareInfo">
-                    <div style="padding: 7px"><h3>Version</h3>{{=test[0][2]}}</a></div>
-                    <div style="padding: 7px"><h3>Previous Block Hash</h3>b6ff0b1b1680a2862a30ca44d346d9e8910d334beb48ca0c0000000000000000</a></div>
-                    <div style="padding: 7px"><h3>Merkle Root</h3>9d10aa52ee949386ca9385695f04ede270dda20810decd12bc9b048aaab31471</a></div>
-                    <div style="padding: 7px"><h3>Bits</h3>30c31b18</a></div>
-                    <div style="padding: 7px"><h3>Nonce</h3>fe9f0864</a></div>
+                    <div style="padding: 7px"><h2>Version</h2>{{=test[0][2]}}</a></div>
+                    <div style="padding: 7px"><h2>Previous Block Hash</h2>b6ff0b1b1680a2862a30ca44d346d9e8910d334beb48ca0c0000000000000000</a></div>
+                    <div style="padding: 7px"><h2>Merkle Root</h2>9d10aa52ee949386ca9385695f04ede270dda20810decd12bc9b048aaab31471</a></div>
+                    <div style="padding: 7px"><h2>Bits</h2>30c31b18</a></div>
+                    <div style="padding: 7px"><h2>Nonce</h2>fe9f0864</a></div>
                 </div>
             </div>
         </div>

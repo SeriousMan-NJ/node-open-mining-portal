@@ -183,25 +183,34 @@ module.exports = function(logger, portalConfig, poolConfigs){
                     var parts = ins.split(':');
                     var workerShares = parseFloat(parts[0]);
                     var worker = parts[1];
+                    var blockhex = parts[3];
+                    var header = deserializeHeader(headerFromBlockHex(blockhex));
+
                     if (workerShares > 0) {
                         coinStats.shares += workerShares;
-                        if (worker in coinStats.workers)
+                        if (worker in coinStats.workers) {
                             coinStats.workers[worker].shares += workerShares;
+                            coinStats.workers[worker].header.push(header);
+                        }
                         else
                             coinStats.workers[worker] = {
                                 shares: workerShares,
                                 invalidshares: 0,
-                                hashrateString: null
+                                hashrateString: null,
+                                headers: [header]
                             };
                     }
                     else {
-                        if (worker in coinStats.workers)
+                        if (worker in coinStats.workers) {
                             coinStats.workers[worker].invalidshares -= workerShares; // workerShares is negative number!
+                            coinStats.workers[worker].header.push(header);
+                        }
                         else
                             coinStats.workers[worker] = {
                                 shares: 0,
                                 invalidshares: -workerShares,
-                                hashrateString: null
+                                hashrateString: null,
+                                headers: [header]
                             };
                     }
                 });
@@ -281,3 +290,45 @@ module.exports = function(logger, portalConfig, poolConfigs){
     };
 
 };
+
+function reverseBuffer(buf){
+    var reversed = new Buffer(buf.length)
+    for (var i = buf.length - 1; i >= 0; i--)
+        reversed[buf.length - i - 1] = buf[i]
+    return reversed
+  }
+  
+  function headerFromBlockHex(hex) {
+    return new Buffer(hex, "hex").slice(0, 80)
+  }
+  
+  function deserializeHeader(header) {
+    var position = 0
+    var version = header.readInt32LE(position)
+    position += 4
+    position += 32
+    var previousblockhash = ""
+    for (var i = 1; i <= 8; i++) {
+      previousblockhash += header.readUInt32LE(position - 4*i).toString(16)
+    }
+    previousblockhash = ('0000000000000000000000000000000000000000000000000000000000000000' + previousblockhash).slice(-64)
+  
+    position += 32
+    var merkleRoot = ""
+    for (var i = 1; i <= 8; i++) {
+      merkleRoot += header.readUInt32LE(position - 4*i).toString(16)
+    }
+    merkleRoot = ('0000000000000000000000000000000000000000000000000000000000000000' + merkleRoot).slice(-64)
+    var ntime = new Date(header.readUInt32LE(position) * 1000)
+    var bits = header.readUInt32LE(position += 4).toString(16)
+    var nonce = header.readUInt32LE(position += 4) 
+  
+    return {
+      version: version,
+      previousblockhash: previousblockhash,
+      merkleRoot: merkleRoot,
+      ntime: ntime,
+      bits: bits,
+      nonce: nonce
+    }
+  }
