@@ -50,18 +50,19 @@
         </div>
         {{ for(var pool in it.stats.pools) { }}
             {{ for(var worker in it.stats.pools[pool].workers) { }}
-            {{var workerstat = it.stats.pools[pool].workers[worker];}}
-            {{ for(var num=0 ; num < worker.headers.length ; num++) { }}
+            {{ var workerstat = it.stats.pools[pool].workers[worker];}}
+            {{ for(var num=0 ; num < workerstat.headers.length ; num++) { }}
+            {{ var stat = workerstat.headers[num]; }}
             <div class="boxStatsList">
                 <div style="margin-bottom: 12px; background-color: #eeeeee; min-width:600px;">
                     <i class="fa fa-bars"></i><small style="font-size: 1.3em;">Worker : </small></a>{{=worker}}
-                    <span style="padding-left: 30px;"><small>TimeStamp : </small>headers[num]["ntime"]</span>
+                    <span style="padding-left: 30px;"><small>TimeStamp : </small>{{=stat["ntime"]}}</span>
                     <div class="shareInfo">
-                        <div style="padding: 7px"><h3>Version:</h3>headers[num]["version"]</a></div>
-                        <div style="padding: 7px"></div><h3>Previous Block Hash:</h3>headers[num]["previousblockhash"]</a></div>
-                        <div style="padding: 7px"><h3>Merkle Root:</h3>headers[num]["merkleRoot"]</a></div>
-                        <div style="padding: 7px"><h3>Bits:</h3>headers[num]["bits"]</a></div>
-                        <div style="padding: 7px"><h3>Nonce:</h3>headers[num]["nonce"]</a></div>
+                        <div style="padding: 7px"><h3>Version:</h3>{{=stat["version"]}}</a></div>
+                        <div style="padding: 7px"></div><h3>Previous Block Hash:</h3>{{=stat["previousblockhash"]}}</a></div>
+                        <div style="padding: 7px"><h3>Merkle Root:</h3>{{=stat["merkleRoot"]}}</a></div>
+                        <div style="padding: 7px"><h3>Bits:</h3>{{=stat["bits"]}}</a></div>
+                        <div style="padding: 7px"><h3>Nonce:</h3>{{=stat["nonce"]}}</a></div>
                     </div>
                 </div>
             </div>
