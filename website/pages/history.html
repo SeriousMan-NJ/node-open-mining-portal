@@ -1,0 +1,91 @@
+<style>
+    .boxLowerHeader{
+        font-size: 1.7em;
+        margin: 0 0 5px 10px;
+        align-content: center;
+    }
+
+    #boxStatsRight{
+		color: black;
+        background-color: #cccccc;
+    }
+    .boxStats{
+        color: white;
+    }
+    .boxStatsList{
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-around;
+        opacity: 0.77;
+        margin-bottom: 5px;
+        margin-top: 9px;
+        flex: 1 1 auto;
+        align-content: center;
+    }
+    .boxStatsList i.fa{
+        height: 15px;
+        width: 33px;
+        text-align: center;
+    }
+    .boxStatsList > div{
+        padding: 5px 20px;
+    }
+    .boxStatsList > div > div{
+        padding: 3px;
+    }
+    .shareInfo{
+        margin-bottom: 10px; 
+        background-color: #dfedee; 
+        min-width:600px; 
+        border:2px solid gold;
+    }
+</style>
+
+<div class="shareBox">
+    <div class="boxStats" id="boxStatsRight">
+        <div class="boxLowerHeader">Share Information &nbsp;&nbsp;
+        <span style="float:right;"><small>
+        <i class="fa fa-bars"></i> <span id="statsValidBlocksbitcoin candy">76266</span> Blocks &nbsp;&nbsp;
+        </span>
+        </div>
+        {{ for(var pool in it.stats.pools) { }}
+            {{ for(var worker in it.stats.pools[pool].workers) { }}
+            {{var workerstat = it.stats.pools[pool].workers[worker];}}
+            {{ for(var num=0 ; num < worker.header.length ; num++) { }}
+            <div class="boxStatsList">
+                <div style="margin-bottom: 9px; background-color: #eeeeee; min-width:600px;">
+                    <i class="fa fa-bars"></i><small style="font-size: 1.3em;">Worker : </small></a>{{=worker}}
+                    <span style="padding-left: 30px;"><small>TimeStamp : </small>header[num]["timestamp"]</span>
+                    <div class="shareInfo">
+                        <div style="padding: 7px"><h3>Version:</h3>header[num]["version"]</a></div>
+                        <div style="padding: 7px"></div><h3>Previous Block Hash:</h3>header[num]["previousblockhash"]</a></div>
+                        <div style="padding: 7px"><h3>Merkle Root:</h3>header[num]["merkleroot"]</a></div>
+                        <div style="padding: 7px"><h3>Bits:</h3>header[num]["bits"]</a></div>
+                        <div style="padding: 7px"><h3>Nonce:</h3>header[num]["nonce"]</a></div>
+                    </div>
+                </div>
+            </div>
+            {{ } }}
+        {{ } }}
+        {{ } }}
+        {{ for(var num=0 ; num < 7 ; num++) { }}
+        <div class="boxStatsList">
+                {{var test = [{"1":2, 2:3},{3:4,5:6}];}}
+            <div style="margin-bottom: 9px; background-color: #eeeeee; min-width:600px;">
+                <span><i class="fa fa-bars"></i><small style="font-size: 1.3em;">Worker : </small></a>{{=test[0]}}</span>
+                <span style="padding-left: 30px;"><small>TimeStamp : </small>{{=test[0]["1"]}}</span>
+                <div class="shareInfo">
+                    <div style="padding: 7px"><h3>Version</h3>{{=test[0][2]}}</a></div>
+                    <div style="padding: 7px"><h3>Previous Block Hash</h3>b6ff0b1b1680a2862a30ca44d346d9e8910d334beb48ca0c0000000000000000</a></div>
+                    <div style="padding: 7px"><h3>Merkle Root</h3>9d10aa52ee949386ca9385695f04ede270dda20810decd12bc9b048aaab31471</a></div>
+                    <div style="padding: 7px"><h3>Bits</h3>30c31b18</a></div>
+                    <div style="padding: 7px"><h3>Nonce</h3>fe9f0864</a></div>
+                </div>
+            </div>
+        </div>
+        {{ } }}
+
+        <script type="text/javascript">
+        </script>
+  </div>
+    </div>

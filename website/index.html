@@ -21,7 +21,7 @@
     <script src="/static/main.js"></script>
     <link rel="stylesheet" href="/static/style.css">
 
-    <title>NOMP</title>
+    <title>POSPOOL</title>
 
 </head>
 
@@ -30,7 +30,7 @@
 <header>
     <div class="home-menu pure-menu pure-menu-open pure-menu-horizontal">
 
-        <a class="pure-menu-heading hot-swapper" href="/"><i class="fa fa-home"></i>&nbsp;NOMP</a>
+        <a class="pure-menu-heading hot-swapper" href="/"><i class="fa fa-home"></i>&nbsp;POSPOOL</a>
 
         <ul>
             <li class="{{? it.selected === 'getting_started' }}pure-menu-selected{{?}}">
@@ -57,12 +57,19 @@
                     Workers Stats
                 </a>
             </li>
+            <li class="{{? it.selected === 'history' }}pure-menu-selected{{?}}">
+                <a class="hot-swapper" href="/history">
+                    <i class="fa fa-barcode"></i>&nbsp;
+                    Share History
+                </a>
+            </li>
             <li class="{{? it.selected === 'api' }}pure-menu-selected{{?}}">
                 <a class="hot-swapper" href="/api">
                     <i class="fa fa-code"></i>&nbsp;
                     API
                 </a>
             </li>
+            
         </ul>
     </div>
 </header>
