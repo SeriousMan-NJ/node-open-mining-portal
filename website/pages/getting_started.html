@@ -227,7 +227,7 @@
     </div>
 
     <div id="main">
-        <a href="https://github.com/tpruvot/cpuminer-multi.git" class="miningOption">
+        <a href="https://github.com/pooler/cpuminer/releases/tag/v2.5.0" class="miningOption">
             <div class="miningOptionNum">1.</div>
             <div class="miningOptionInstructions">
                 <div>Download CPUMiner</div>
@@ -243,8 +243,8 @@
             <div class="miningOptionInstructions">
                 <div>Select a coin for connection details</div>
                 <div>Configurations for each coin are available for advanced miners</div><br>
-                <small style="align-content: center;">./cpuminer -a scrypt -o stratum+tcp://141.223.85.152:(difficulty) -u (your bitcoin address) -p c=BTC</small><br>
-                <small style="align-content: center;">example) ./cpuminer -a scrypt -o stratum+tcp://141.223.85.152:3008 -u 14sx1beJKRAUD4HovwjKA9tkcd6SaDK2nv -p c=BTC</small><br>
+                <small style="align-content: center;">./minerd -o stratum+tcp://{{=it.portalConfig.website.stratumHost}}:(difficulty) -u (your bitcoin address)</small><br>
+                <small style="align-content: center;">(ex) ./minerd -o stratum+tcp://{{=it.portalConfig.website.stratumHost}}:3008 -u mkHS9ne12qx9pS9VojpwU5xtRd4T7X7ZUt</small><br>
             </div>
         </a>
     </div>
@@ -318,3 +318,4 @@
         return false;
     });
 </script>
+
