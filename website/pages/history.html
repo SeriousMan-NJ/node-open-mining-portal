@@ -44,8 +44,16 @@
 <div class="shareBox">
     <div class="boxStats" id="boxStatsRight">
         <div class="boxLowerHeader">Share Information &nbsp;&nbsp;
-        <span style="float:right;"><small>
-        <i class="fa fa-bars"></i> <span id="statsValidBlocksbitcoin candy">76266</span> Blocks &nbsp;&nbsp;
+        <span style="float:right;">
+            {{ var num_share = 0; }}
+            {{ for(var pool in it.stats.pools) { }}
+            {{ for(var worker in it.stats.pools[pool].workers) { }}
+            {{ var workerstat = it.stats.pools[pool].workers[worker];}}
+            {{ num_share += workerstat.headers.length; }}
+                {{ } }}
+                {{ } }} 
+        <i class="fa fa-bars"></i> <span id="statsValidBlocksbitcoin candy">{{=num_share}}</span> Blocks &nbsp;&nbsp;
+        
         </span>
 	</div>
         {{ for(var pool in it.stats.pools) { }}
